@@ -73,7 +73,7 @@ kt.login(qr=True)
 kt.loginResult()
 
 k1 = LINETCR.LINE() #Backup (Gunanya Kalo Akun Utama Ke Kick, Dy masuk ke Group dan Ngekick yang Kick Akun Utama Dan Akun Utama Di undang sama dia,lalu dy leave lagi :D)
-k1.login(qr=True")
+k1.login(qr=True)
 k1.loginResult()
 
 print "🇲🇨⊰์◉⊱B❂TT❂X B❂T⊰์◉⊱🇲🇨\nSELAMAT MENGGUNAKAN"
