@@ -178,11 +178,18 @@ Ready:
 
 Idline: http://line.me/ti/p/up3NLjmK17""",
     "lang":"JP",
-    "comment":"🇲🇨•••••••••Auto Like By•••••••••••••••••🇲🇨 http://line.me/ti/p/up3NLjmK17  『⊰์◉⊱B❂TT❂X B❂T⊰์◉⊱』",
-    "commentOn":False,
+    "comment1":"🇲🇨•••••••••Auto Like By•••••••••••••••••🇲🇨 http://line.me/ti/p/up3NLjmK17  『⊰์◉⊱B❂TT❂X B❂T⊰์◉⊱』",
+    "comment2":"Wkwkwk ＼（○＾ω＾○）／",
+    "comment3":"Lucu Banget!!! ヘ(^_^)ヘ",
+    "comment4":"Nice Kak (^_^)",
+    "comment5":"🇲🇨•••••••••Auto Like By•••••••••••••••••🇲🇨 http://line.me/ti/p/up3NLjmK17  『⊰์◉⊱B❂TT❂X B❂T⊰์◉⊱』",
+    "commentOn":True,
     "commentBlack":{},
     "wblack":False,
     "dblack":False,
+    "likeOn":True,
+    "spam":{},
+    "detectMention":True,    
     "clock":False,
     "cName":"BOTTROX PROTECT",
     "cName2":"BotTrox2 ",
@@ -220,6 +227,13 @@ wait2 = {
     'ROM':{}
     }
     
+mimic = {
+    "copy":False,
+    "copy2":False,
+    "status":False,
+    "target":{}
+    }
+    
 settings = {
     "simiSimi":{}
     }
@@ -230,10 +244,204 @@ cctv = {
     "sidermem":{}
 }    
 
+res = {
+    'num':{},
+    'us':{},
+    'au':{},
+    }
+
 setTime = {}
 setTime = wait2['setTime']
 
+contact = cl.getProfile()
+backup = cl.getProfile()
+backup.displayName = contact.displayName
+backup.statusMessage = contact.statusMessage                        
+backup.pictureStatus = contact.pictureStatus
 
+def restart_program():
+    python = sys.executable
+    os.execl(python, python, * sys.argv)
+    
+def download_page(url):
+    version = (3,0)
+    cur_version = sys.version_info
+    if cur_version >= version:     
+        try:
+            headers = {}
+            headers['User-Agent'] = "Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/41.0.2228.0 Safari/537.36"
+            req = urllib.request.Request(url, headers = headers)
+            resp = urllib.request.urlopen(req)
+            respData = str(resp.read())
+            return respData
+        except Exception as e:
+            print(str(e))
+    else:                        
+        import urllib2
+        try:
+            headers = {}
+            headers['User-Agent'] = "Mozilla/5.0 (X11; Linux i686) AppleWebKit/537.17 (KHTML, like Gecko) Chrome/24.0.1312.27 Safari/537.17"
+            req = urllib2.Request(url, headers = headers)
+            response = urllib2.urlopen(req)
+            page = response.read()
+            return page
+        except:
+            return"Page Not found"
+            
+def _images_get_next_item(s):
+    start_line = s.find('rg_di')
+    if start_line == -1:    
+        end_quote = 0
+        link = "no_links"
+        return link, end_quote
+    else:
+        start_line = s.find('"class="rg_meta"')
+        start_content = s.find('"ou"',start_line+1)
+        end_content = s.find(',"ow"',start_content+1)
+        content_raw = str(s[start_content+6:end_content-1])
+        return content_raw, end_content
+        
+def _images_get_all_items(page):
+    items = []
+    while True:
+        item, end_content = _images_get_next_item(page)
+        if item == "no_links":
+            break
+        else:
+            items.append(item)      
+            time.sleep(0.1)        
+            page = page[end_content:]
+    return items
+    
+def upload_tempimage(client):
+    '''
+        Upload a picture of a kitten. We don't ship one, so get creative!
+    '''
+    config = {
+        'album': album,
+        'name':  'bot auto upload',
+        'title': 'bot auto upload',
+        'description': 'bot auto upload'
+    }
+
+    print("Uploading image... ")
+    image = client.upload_from_path(image_path, config=config, anon=False)
+    print("Done")
+    print()
+
+def summon(to, nama):
+    aa = ""
+    bb = ""
+    strt = int(14)
+    akh = int(14)
+    nm = nama
+    for mm in nm:
+      akh = akh + 2
+      aa += """{"S":"""+json.dumps(str(strt))+""","E":"""+json.dumps(str(akh))+""","M":"""+json.dumps(mm)+"},"""
+      strt = strt + 6
+      akh = akh + 4
+      bb += "\xe2\x95\xa0 @x \n"
+    aa = (aa[:int(len(aa)-1)])
+    msg = Message()
+    msg.to = to
+    msg.text = "\xe2\x95\x94\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\n"+bb+"\xe2\x95\x9a\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90"
+    msg.contentMetadata ={'MENTION':'{"MENTIONEES":['+aa+']}','EMTVER':'4'}
+    print "[Command] Tag All"
+    try:
+       cl.sendMessage(msg)
+    except Exception as error:
+       print error
+       
+def waktu(secs):
+    mins, secs = divmod(secs,60)
+    hours, mins = divmod(mins,60)
+    day, hours = divmod(hours,24)
+    return '\n✤%02d Days✤\n✤%02d Hours✤\n✤%02d Minutes✤\n✤%02d Seconds✤' % (day, hours, mins, secs)
+    
+def sendImage(self, to_, path):
+        M = Message(to=to_,contentType = 1)
+        M.contentMetadata = None
+        M.contentPreview = None
+        M_id = self._client.sendMessage(M).id
+        files = {
+            'file': open(path, 'rb'),
+        }
+        params = {
+            'name': 'media',
+            'oid': M_id,
+            'size': len(open(path, 'rb').read()),
+            'type': 'image',
+            'ver': '1.0',
+        }
+        data = {
+            'params': json.dumps(params)
+        }
+        r = self._client.post_content('https://os.line.naver.jp/talk/m/upload.nhn', data=data, files=files)
+        if r.status_code != 201:
+            raise Exception('Upload image failure.')
+        #r.content
+        return True
+
+def sendImageWithURL(self, to_, url):
+      path = '%s/pythonLine-%i.data' % (tempfile.gettempdir(), randint(0, 9))
+      r = requests.get(url, stream=True)
+      if r.status_code == 200:
+         with open(path, 'w') as f:
+            shutil.copyfileobj(r.raw, f)
+      else:
+         raise Exception('Download image failure.')
+      try:
+         self.sendImage(to_, path)
+      except Exception as e:
+         raise e
+         
+def sendAudio(self, to_, path):
+        M = Message(to=to_, text=None, contentType = 3)
+        M.contentMetadata = None
+        M.contentPreview = None
+        M2 = self.Talk.client.sendMessage(0,M)
+        M_id = M2.id
+        files = {
+            'file': open(path, 'rb'),
+        }
+        params = {
+            'name': 'media',
+            'oid': M_id,
+            'size': len(open(path, 'rb').read()),
+            'type': 'audio',
+            'ver': '1.0',
+        }
+        data = {
+            'params': json.dumps(params)
+        }
+        r = self.post_content('https://os.line.naver.jp/talk/m/upload.nhn', data=data, files=files)
+        if r.status_code != 201:
+            raise Exception('Upload audio failure.')
+        return True
+
+def sendAudioWithUrl(self, to_, url):
+        path = '%s/pythonLine-%1.data' % (tempfile.gettempdir(), randint(0, 9))
+
+        r = requests.get(url, stream=True)
+        if r.status_code == 200:
+            with open(path, 'w') as f:
+                shutil.copyfileobj(r.raw, f)
+        else:
+            raise Exception('Download audio failure.')
+
+        try:
+            self.sendAudio(to_, path)
+        except Exception as e:
+            raise (e)
+
+def cms(string, commands): #/XXX, >XXX, ;XXX, ^XXX, %XXX, $XXX...
+    tex = ["+","@","/",">",";","^","%","$","＾","サテラ:","サテラ:","サテラ：","サテラ："]
+    for texX in tex:
+        for command in commands:
+            if string ==command:
+                return True
+    return False
+    
 def sendMessage(to, text, contentMetadata={}, contentType=0):
     mes = Message()
     mes.to, mes.from_ = to, profile.mid
@@ -265,6 +473,24 @@ def summon(to, nama):
        cl.sendMessage(msg)
     except Exception as error:
        print error
+       
+#Getting all links with the help of '_images_get_next_image'
+def _images_get_all_items(page):
+    items = []
+    while True:
+        item, end_content = _images_get_next_item(page)
+        if item == "no_links":
+            break
+        else:
+            items.append(item)      #Append all the links in the list named 'Links'
+            time.sleep(0.1)        #Timer could be used to slow down the request for image downloads
+            page = page[end_content:]
+    return items
+
+def waktu(secs):
+    mins, secs = divmod(secs,60)
+    hours, mins = divmod(mins,60)
+    return '%02d Jam %02d Menit %02d Detik' % (hours, mins, secs)
 
 def NOTIFIED_READ_MESSAGE(op):
     try:
@@ -307,6 +533,37 @@ def bot(op):
                         except:
                             cl.sendText(msg.to,"error")
 
+            if 'MENTION' in msg.contentMetadata.keys() != None:
+                 if wait["detectMention"] == True:
+                    names = re.findall(r'@(\w+)',msg.text)
+                    mention = ast.literal_eval(msg.contentMetadata['MENTION'])
+                    mentionees = mention['MENTIONEES']
+                    for mention in mentionees:
+                        if mention['M'] in mid:
+                            xname = cl.getContact(msg.from_).displayName
+                            xlen = str(len(xname)+1)
+                            msg.contentType = 0
+                            balas = "@" + xname + " " + str(message["replyPesan"])
+                            msg.text = balas
+                            msg.contentMetadata ={'MENTION':'{"MENTIONEES":[{"S":"0","E":'+json.dumps(xlen)+',"M":'+json.dumps(msg.from_)+'}]}','EMTVER':'4'}
+                            cl.sendMessage(msg)
+                            break            
+                    
+            if 'MENTION' in msg.contentMetadata.keys() != None:
+                 if wait["kickMention"] == True:
+                     contact = cl.getContact(msg.from_)
+                     cName = contact.displayName
+                     balas = ["Dont Tag Me!! Im Busy",cName + " Ngapain Ngetag?",cName + " Nggak Usah Tag-Tag! Kalo Penting Langsung Pc Aja","Satria Nya lagi off", cName + " Kenapa Tag saya?","SPAM PC aja " + cName, "Jangan Suka Tag gua " + cName, "Kamu siapa " + cName + "?", "Ada Perlu apa " + cName + "?","Tenggelamkan tuh yang suka tag pake BOT","Tersummon -_-"]
+                     ret_ = "[Auto Respond] " + random.choice(balas)
+                     name = re.findall(r'@(\w+)', msg.text)
+                     mention = ast.literal_eval(msg.contentMetadata['MENTION'])
+                     mentionees = mention['MENTIONEES']
+                     for mention in mentionees:
+                           if mention['M'] in Bots:
+                                  cl.sendText(msg.to,ret_)
+                                  cl.kickoutFromGroup(msg.to,[msg.from_])
+                                  break
+                                  
         #------Protect Group Kick start------#
         if op.type == 11:
           if wait["Protectgr"] == True:
@@ -1283,6 +1540,32 @@ def bot(op):
         else:
             pass    
             
+            
+            
+            if msg.contentType == 16:
+                if wait['likeOn'] == True:
+                     url = msg.contentMetadata["postEndUrl"]
+                     cl.like(url[25:58], url[66:], likeType=1005)
+                     ki.like(url[25:58], url[66:], likeType=1002)
+                     kk.like(url[25:58], url[66:], likeType=1004)
+                     kc.like(url[25:58], url[66:], likeType=1003)
+                     ks.like(url[25:58], url[66:], likeType=1001)
+                     cl.comment(url[25:58], url[66:], wait["comment1"])
+                     ki.comment(url[25:58], url[66:], wait["comment2"])
+                     kk.comment(url[25:58], url[66:], wait["comment3"])
+                     kc.comment(url[25:58], url[66:], wait["comment4"])
+                     ks.comment(url[25:58], url[66:], wait["comment5"])
+                     cl.sendText(msg.to,"Like Success")                     
+                     wait['likeOn'] = True
+                     
+            elif msg.contentType == 16:
+                if wait["timeline"] == True:
+                    msg.contentType = 0
+                    if wait["lang"] == "JP":
+                        msg.text = "menempatkan URL\n" + msg.contentMetadata["postEndUrl"]
+                    else:
+                        msg.text = msg.contentMetadata["postEndUrl"]
+                    cl.sendText(msg.to,msg.text)                    
 #--------------------------------
         if op.type == 13:
             if mid in op.param3:
@@ -1583,7 +1866,7 @@ def bot(op):
                   cl.sendText(msg.to,"The stafflist is empty")
               else:
                   cl.sendText(msg.to,"🇲🇨Tunggu...🇲🇨")
-                  mc = "||ADMIN \n\n🇲🇨⊰์◉⊱B❂TT❂X B❂T⊰์◉⊱🇲🇨||\n=====================\n"
+                  mc = "||ADMIN \n🇲🇨⊰์◉⊱B❂TT❂X B❂T⊰์◉⊱??🇨||\n=====================\n"
                   for mi_d in admin:
                       mc += "••>" +cl.getContact(mi_d).displayName + "\n"
                   cl.sendText(msg.to,mc)
@@ -3402,7 +3685,7 @@ def bot(op):
                 ki.sendText(msg.to,"Rhara Vekok 􀜁􀅔Har Har􏿿")
                 kk.sendText(msg.to,"Rhara Vekok 􀜁􀅔Har Har􏿿")
                 kc.sendText(msg.to,"Rhara Vekok 􀜁􀅔Har Har􏿿")
-            elif msg.text in ["Satria Vekok"]:
+            elif msg.text in ["Satria vekok"]:
               if msg.from_ in admin:
                 ki.sendText(msg.to,"Satria Vekok 􀜁􀅔Har Har􏿿")
                 kk.sendText(msg.to,"Satria Vekok 􀜁􀅔Har Har􏿿")
@@ -3412,14 +3695,14 @@ def bot(op):
                 ki.sendText(msg.to,"Have a nice dream Cv 􀜁􀅔Har Har􏿿")
                 kk.sendText(msg.to,"Have a nice dream Cv 􀜁􀅔Har Har􏿿")
                 kc.sendText(msg.to,"Have a nice dream Cv 􀜁􀅔Har Har􏿿")
-            elif msg.text in ["Bot Vekok"]:
+            elif msg.text in ["Bot vekok"]:
               if msg.from_ in admin:
                 ki.sendText(msg.to,"Kamu Yang Vekok 􀜁􀅔Har Har􏿿")
                 kk.sendText(msg.to,"Kamu Yang Vekok 􀜁􀅔Har Har􏿿")
                 kc.sendText(msg.to,"Kamu Yang Vekok 􀜁􀅔Har Har􏿿")
             elif msg.text in ["Owner"]:
             	msg.contentType = 13
-                kk.sendText(msg.to,"OWNER \n\n🇲🇨⊰์◉⊱B❂TT❂X B❂T⊰์◉⊱🇲🇨")
+                kk.sendText(msg.to,"OWNER \n🇲🇨⊰์◉⊱B❂TT❂X B❂T⊰์◉⊱🇲🇨")
                 msg.contentMetadata = {'mid': 'u1608ae21e5de2547b5fa8707b21ca220'}
                 ki.sendMessage(msg)
                 msg.contentMetadata = {'mid': 'u622a5e6c9bcec78d243e10e604a32dbd'}
@@ -3433,11 +3716,16 @@ def bot(op):
                 ki.sendText(msg.to,"Selamat datang di Group Kami")
                 kk.sendText(msg.to,"Jangan nakal ok!")
    #--------------------------------
-            elif msg.text.lower() == 'Runtime':
+            elif msg.text.lower() == 'runtime':
+              if msg.from_ in admin:
+                cl.sendText(msg.to,"「Please wait..」\nType  :Loading...\nStatus : Loading...")
                 eltime = time.time() - mulai
-                van = "Bot sudah berjalan selama "+waktu(eltime)
+                van = "Type : Bot Sedang Berjalan \nStatus : Aktif \nMySelbot sudah berjalan selama " + waktu(eltime)
                 cl.sendText(msg.to,van)
   #----------------------------------
+            elif msg.text.lower() == 'kalender':
+	    	    wait2['setTime'][msg.to] = datetime.today().strftime('TANGGAL : %Y-%m-%d \nHARI : %A \nJAM : %H:%M:%S')
+	            cl.sendText(msg.to, "KALENDER\n\n" + (wait2['setTime'][msg.to]))
             elif "Waktu" in msg.text:
               if msg.from_ in admin:
 	    	       wait2['setTime'][msg.to] = datetime.today().strftime('TANGGAL : %Y-%m-%d \nHARI : %A \nJAM : %H:%M:%S')
@@ -3545,7 +3833,7 @@ def bot(op):
                     if hr == day[i]: hasil = hari[i]
                 for k in range(0, len(bulan)):
                     if bln == str(k): bulan = blan[k-1]
-                rst = hasil + ", " + inihari.strftime('%d') + " - " + bln + " - " + inihari.strftime('%Y') + "\nJam : [ " + inihari.strftime('%H:%M:%S') + " ]"
+                rst = hasil + ":" + inihari.strftime('%d') + "-" + bln + "-" + inihari.strftime('%Y') + "\nJam : [ " + inihari.strftime('%H:%M:%S') + " ]"
                 cl.sendText(msg.to, rst)
 #-----------------------------------------------
             elif msg.text in ["PING","Ping","ping"]:
@@ -3590,7 +3878,7 @@ def bot(op):
             elif msg.text in ["Speed","Sp"]:
               if msg.from_ in admin and owner:
                 start = time.time()
-                cl.sendText(msg.to, "Sabar Trox.....")
+                cl.sendText(msg.to, "🇲🇨⊰์◉⊱B❂TT❂X B❂T⊰์◉⊱🇲🇨\nSPEED...")
                 elapsed_time = time.time() - start
                 cl.sendText(msg.to, "%sDetik" % (elapsed_time))
       #-------------Fungsi Speedbot Finish---------------------#
@@ -3613,7 +3901,7 @@ def bot(op):
       #-------------Fungsi Banned Send Contact Finish------------------#
             elif msg.text in ["Creator"]:
               msg.contentType = 13
-              cl.sendText(msg.to,"CREATOR\n\n🇲🇨⊰์◉⊱B❂TT❂X B❂T⊰์◉⊱🇲🇨")
+              cl.sendText(msg.to,"CREATOR\n🇲🇨⊰์◉⊱B❂TT❂X B❂T⊰์◉⊱🇲🇨")
               msg.contentMetadata = {'mid': 'u1608ae21e5de2547b5fa8707b21ca220'}
               cl.sendMessage(msg)
               msg.contentMetadata = {'mid': 'u5d4fcfac4328049c5c423847cf1f1341'}
