@@ -1,4 +1,5 @@
 🇲🇨⊰์◉⊱B❂TT❂X B❂T⊰์◉⊱🇲🇨
+
 BOT PROTECT CREATOR & ADMIN & 15 BOT + 1 GHOST.
 ------
 GET TOKEN :
@@ -57,5 +58,7 @@ Credit By @Satria.
 Thx To :
 ------
 - `LINE-TCR TEAM`
-
+- `ONE PIECE TEAM`
+-`Koplaxs`
+-`DAN KAWAN-KAWAN`
 
