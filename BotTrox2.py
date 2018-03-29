@@ -502,7 +502,7 @@ def bot(op):
                     cl.cancelGroupInvitation(op.param1, matched_list)
                                        
         #------Joined User Kick start------#
-       if op.type == 19: #Member Ke Kick
+        if op.type == 19: #Member Ke Kick
           if op.param2 in Bots:
             pass
           elif op.param2 in admin:
@@ -522,16 +522,16 @@ def bot(op):
               #json.dump(wait["blacklist"], f, sort_keys=True, indent=4,ensure_ascii=False)
         
         if op.type == 19: 
-          if op.param3 in admin: 
+          if op.param3 in admin: #Kalo Admin ke Kick
             if op.param2 in Bots + admin:
               pass
             if op.param2 in owner:
               pass
             else:
-                random.choice(KAC).kickoutFromGroup(op.param1,[op.param2])
+                random.choice(KAC).kickoutFromGroup
                 cl.inviteIntoGroup(op.param1,[op.param3])
               
-        f op.type == 19:
+        if op.type == 19: #bot Ke Kick
           if op.param2 in Bots:
             pass
           if op.param2 in admin:
