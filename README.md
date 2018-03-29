@@ -1,13 +1,19 @@
-🇲🇨⊰์◉⊱B❂TT❂X B❂T⊰์◉⊱🇲🇨
-BOT PROTECT CREATOR & ADMIN & 15 BOT + 1 GHOST.
+# BotTrox2
+`https://github.com/Satria3/BotTrox2`
+
+????????B?TT?X B?T????????
+
+BOTTROX 1 AKUN
 ------
 GET TOKEN :
 ------
-- `git clone https://github.com/alfathdirk/LineAlphatJS.git
-cd LineAlphatJS && npm install
-npm start`
-Cara Install : 🇲🇨⊰์◉⊱B❂TT❂X B❂T⊰์◉⊱🇲🇨
+- `git clone https://github.com/alfathdirk/LineAlphatJS.git`
+- `cd LineAlphatJS && npm install`
+- `npm start`
+
+Cara Install : ????????B?TT?X B?T????????
 ------
+
 Di C9 :
 - Ketik -> `sudo apt-get update`
 - Ketik -> `sudo apt-get install git`
@@ -24,6 +30,7 @@ Di C9 :
 - Ketik -> `python BotTrox2.py`
 
 Di Termux :
+
 - Ketik -> `pkg update`
 - Ketik -> `pkg install git`
 - Ketik -> `pkg install python2`
@@ -56,5 +63,5 @@ Credit By @Satria.
 Thx To :
 ------
 - `LINE-TCR TEAM`
-
-
+- `ONE PIECE TEAM`
+- `DAN KAWAN-KAWAN`
