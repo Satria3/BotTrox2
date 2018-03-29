@@ -1,17 +1,14 @@
-# BotTrox2
-`https://github.com/Satria3/BotTrox2`
-
-????????B?TT?X B?T????????
+🇲🇨⊰์◉⊱B❂TT❂X B❂T⊰์◉⊱🇲🇨
 
 BOTTROX 1 AKUN
 ------
 GET TOKEN :
 ------
-- `git clone https://github.com/alfathdirk/LineAlphatJS.git`
-- `cd LineAlphatJS && npm install`
-- `npm start`
+- `git clone https://github.com/alfathdirk/LineAlphatJS.git
+cd LineAlphatJS && npm install
+npm start`
 
-Cara Install : ????????B?TT?X B?T????????
+Cara Install : 🇲🇨⊰์◉⊱B❂TT❂X B❂T⊰์◉⊱🇲🇨
 ------
 
 Di C9 :
@@ -25,9 +22,9 @@ Di C9 :
 - Ketik -> `sudo pip install bs4`
 - Ketik -> `sudo pip install gtts`
 - Ketik -> `sudo pip install googletrans`
-- Ketik -> `git clone https://github.com/Satria3/BotTrox2`
-- Ketik -> `cd BotTrox2`
-- Ketik -> `python BotTrox2.py`
+- Ketik -> `git clone https://github.com/Satria3/SelfBot`
+- Ketik -> `cd Selfbot`
+- Ketik -> `python SatriaBot.py`
 
 Di Termux :
 
@@ -40,19 +37,19 @@ Di Termux :
 - Ketik -> `pip2 install bs4`
 - Ketik -> `pip2 install gtts`
 - Ketik -> `pip2 install googletrans`
-- Ketik -> `git clone https://github.com/Satria3/BotTrox2`
-- Ketik -> `cd BotTrox2`
-- Ketik -> `python2 BotTrox2.py`
+- Ketik -> `git clone https://github.com/Satria3/SelfBot`
+- Ketik -> `cd selfbot`
+- Ketik -> `python2 SatriaBot.py`
 
 Cara Menjalankan Bot Kembali :
 ------
 Di C9 :
-- Ketik -> `cd BotTrox2`
-- Ketik -> `python BotTrox2.py`
+- Ketik -> `cd selfbot`
+- Ketik -> `python SatriaBot.py`
 
 Di Termux :
-- Ketik -> `cd BotTrox2`
-- Ketik -> `python2 BotTrox2.py`
+- Ketik -> `cd selfbot`
+- Ketik -> `python2 SatriaBot.py`
 
 
 Credit By @Satria.
