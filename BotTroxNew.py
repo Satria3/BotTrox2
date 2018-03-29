@@ -232,7 +232,15 @@ cctv = {
 
 setTime = {}
 setTime = wait2['setTime']
+setTime = {}
+setTime = wait2['setTime']
+mulai = time.time() 
 
+def waktu(secs):
+    mins, secs = divmod(secs,60)
+    hours, mins = divmod(mins,60)
+    day, hours = divmod(hours,24)
+    return '\n🇲🇨%02d hari🇲🇨\n🇲🇨%02d jam🇲🇨\n🇲🇨%02d menit🇲🇨\n🇲🇨%02d detik🇲🇨' % (day, hours, mins, secs) 
 
 def sendMessage(to, text, contentMetadata={}, contentType=0):
     mes = Message()
@@ -309,35 +317,13 @@ def bot(op):
 
         #------Protect Group Kick start------#
         if op.type == 11:
-          if wait["Protectgr"] == True:
-            if random.getGroup(op.param1).preventJoinByTicket == False:
-              if op.param2 in Bots and admin:
-                pass
-              elif op.param2 in owner:
-                pass
-              elif op.param2 in admin:
-                pass
-              else:
-              	try:
-                	random.sendText(op.param1,random.getContact(op.param2).displayName + "Jangan Buka Kode QR Kk")
-                	random.kickoutFromGroup(op.param1,[op.param2])
-                	X = random.getGroup(op.param1)
-                	X.preventJoinByTicket = True
-                	random.updateGroup(X)
-                	random.sendText(op.param1,random.getContact(op.param2).displayName + "\n" + "Kami Masukin Kedalam Blacklis Boss")
-                	wait["blacklist"][op.param2] = True
-                	f=codecs.open('st2__b.json','w','utf-8')
-                	json.dump(wait["blacklist"], f, sort_keys=True, indent=4,ensure_ascii=False)
-                except:
-                	random.choice(KAC).sendText(op.param1,random.choice(KAC).getContact(op.param2).displayName + "Jangan Buka Kode QR Njiiir")
-                	random.choice(KAC).kickoutFromGroup(op.param1,[op.param2])
-                	X = random.choice(KAC).getGroup(op.param1)
-                	X.preventJoinByTicket = True
-                	random.choice(KAC).updateGroup(X)
-                	random.choice(KAC).sendText(op.param1,random.choice(KAC).getContact(op.param2).displayName + "\n" + "Kami Masukin Kedalam Blacklis Boss")
-                	wait["blacklist"][op.param2] = True
-                	f=codecs.open('st2__b.json','w','utf-8')
-                	json.dump(wait["blacklist"], f, sort_keys=True, indent=4,ensure_ascii=False)
+           if wait["Protectgr"] == True:
+               if op.param2 not in Bots and admin:
+                   G = random.choice(KAC).getGroup(op.param1)
+                   G.preventJoinByTicket = True
+                   #random.choice(KAC).kickoutFromGroup(op.param1,[op.param2])
+                   random.choice(KAC).updateGroup(G)
+                   random.choice(KAC).sendText(op.param1,random.choice(KAC).getContact(op.param2).displayName + "Jangan Buka Kode QR Njiiir")
         #------Protect Group Kick finish-----#
 
         #------Cancel Invite User start------#
@@ -504,10 +490,10 @@ def bot(op):
                if op.param2 not in admin : # Awalnya admin doang
                    random.choice(KAC).kickoutFromGroup(op.param1,[op.param2])
         #------Joined User Kick start------#
-       # if op.type == 19: #Member Ke Kick
-         # if op.param2 not in Bots:
-            #random.choice(KAC).kickoutFromGroup(op.param1,[op.param2])
-            #cl.inviteIntoGroup(op.param1,[op.param3])
+        if op.type == 19: #Member Ke Kick
+          if op.param2 not in Bots + admin:
+            random.choice(KAC).kickoutFromGroup(op.param1,[op.param2])
+            cl.inviteIntoGroup(op.param1,[op.param3])
         
         if op.type == 19: 
           if op.param3 in admin: #Kalo Admin ke Kick
@@ -1268,11 +1254,11 @@ def bot(op):
                                 if " " in Name:
                                     nick = Name.split(' ')
                                     if len(nick) == 2:
-                                        cl.sendText(op.param1, "🇲🇨⊰์◉⊱B❂TT❂X B❂T⊰์◉⊱🇲🇨\n\n""Haii " + "👉"+"@ " + nick[0] + " 👈" + "\nNgintip Aja Niih. . .\nChat Kek Idiih (-__-)   ")
+                                        cl.sendText(op.param1, "🇲🇨⊰์◉⊱B❂TT❂X B❂T⊰์◉⊱🇲🇨\n""Haii " + "👉"+"@ " + nick[0] + " 👈" + "\nNgintip Aja Niih. . .\nChat Kek Idiih (-__-)   ")
                                     else:
-                                        cl.sendText(op.param1,"🇲🇨⊰์◉⊱B❂TT❂X B❂T⊰์◉⊱🇲🇨\n\n""Haii " + "👉 "+"@ " + nick[1] + " 👈" + "\nBetah Banget Jadi Penonton. . .\nChat Napa (-__-)   ")
+                                        cl.sendText(op.param1,"🇲🇨⊰์◉⊱B❂TT❂X B❂T⊰์◉⊱🇲🇨\n""Haii " + "👉 "+"@ " + nick[1] + " 👈" + "\nBetah Banget Jadi Penonton. . .\nChat Napa (-__-)   ")
                                 else:
-                                    cl.sendText(op.param1,"🇲🇨⊰์◉⊱B❂TT❂X B❂T⊰์◉⊱🇲🇨\n\n""Haii " + "👉 "+"@ " + Name + " 👈" + "\nNgapain Kak Ngintip Aja???\nSini Gabung Chat...   ")
+                                    cl.sendText(op.param1,"🇲🇨⊰์◉⊱B❂TT❂X B❂T⊰์◉⊱🇲🇨\n""Haii " + "👉 "+"@ " + Name + " 👈" + "\nNgapain Kak Ngintip Aja???\nSini Gabung Chat...   ")
                         else:
                             pass
                     else:
@@ -1573,7 +1559,7 @@ def bot(op):
                   cl.sendText(msg.to,"The stafflist is empty")
               else:
                   cl.sendText(msg.to,"🇲🇨Tunggu...🇲🇨")
-                  mc = "||ADMIN \n\n🇲🇨⊰์◉⊱B❂TT❂X B❂T⊰์◉⊱🇲🇨||\n=====================\n"
+                  mc = ".     ADMIN \n🇲🇨⊰์◉⊱B❂TT❂X B❂T⊰์◉⊱🇲🇨\n=====================\n"
                   for mi_d in admin:
                       mc += "••>" +cl.getContact(mi_d).displayName + "\n"
                   cl.sendText(msg.to,mc)
@@ -2652,7 +2638,7 @@ def bot(op):
                             for rom in wait2["ROM"][msg.to].items():
                                 print "[Command] Check"
                                 chiya += rom[1] + "\n"
-                        cl.sendText(msg.to, "||Di Read Oleh||%s\n||By : 🇲🇨⊰์◉⊱B❂TT❂X B❂T⊰์◉⊱🇲🇨||\n\n>Pelaku CCTV<\n\n%s-=CCTV=-\n\n🇲🇨⊰์◉⊱B❂TT❂X B❂T⊰์◉⊱🇲🇨\n[%s]" % (wait2['readMember'][msg.to],chiya,setTime[msg.to]))
+                        cl.sendText(msg.to, "||Di Read Oleh||%s\n\nBy : 🇲🇨⊰์◉⊱B❂TT❂X B❂T⊰์◉⊱🇲🇨\n\n>Pelaku CCTV<\n%s-=CCTV=-\n\n🇲🇨⊰์◉⊱B❂TT❂X B❂T⊰์◉⊱🇲🇨\n[%s]" % (wait2['readMember'][msg.to],chiya,setTime[msg.to]))
                         try:
                         	del wait2['readPoint'][msg.to]
                             #del wait2['readMember'][msg.to]
@@ -2907,7 +2893,7 @@ def bot(op):
     #-------------Fungsi Leave Group Finish---------------#
     
     #-------------Fungsi Tag All Start---------------#
-            elif msg.text in ["Tagall"]:
+            elif msg.text in ["Tagall","Tag"]:
             	 if msg.from_ in admin:
                   group = cl.getGroup(msg.to)
                   nama = [contact.mid for contact in group.members] 
@@ -2938,7 +2924,7 @@ def bot(op):
                        msg.contentMetadata = {'mid': 'u1608ae21e5de2547b5fa8707b21ca220'}
                        cl.sendMessage(msg)
                        
-            elif "Tag" == msg.text.lower():
+            elif "tag" == msg.text.lower():
             	if msg.from_ in admin:
                  group = cl.getGroup(msg.to)
                  nama = [contact.mid for contact in group.members]
@@ -3349,15 +3335,50 @@ def bot(op):
                 msg.contentMetadata = {'mid': 'u622a5e6c9bcec78d243e10e604a32dbd'}
                 kk.sendMessage(msg)
                 kk.sendText(msg.to,"Itu Para Owner Kami Yang vekok 😂😂")
+            elif msg.text.lower() in ["hay"]:
+                    beb = "Hi Sayang 😘 " +cl.getContact(msg.from_).displayName + " 􀸂􀆇starry heart􏿿"
+                    cl.sendText(msg.to,beb)
             elif msg.text in [".welcome"]:
               if msg.from_ in admin:
                 ki.sendText(msg.to,"Selamat datang di Group Kami")
                 kk.sendText(msg.to,"Jangan nakal ok!")
    #--------------------------------
-            elif msg.text.lower() == 'Runtime':
+            elif msg.text.lower() == 'runtime':
+              if msg.from_ in admin:
+                cl.sendText(msg.to,"「Please wait..」\nType  :Loading...\nStatus : Loading...")
                 eltime = time.time() - mulai
-                van = "Bot sudah berjalan selama "+waktu(eltime)
-                cl.sendText(msg.to,van)
+                van = "Type : Bot Sedang Berjalan \nStatus : Aktif \n⊰์◉⊱B❂TT❂X B❂T⊰์◉⊱ sudah berjalan selama " + waktu(eltime)
+                cl.sendText(msg.to,van)   
+  #----------------------------------
+            elif "Waktu" in msg.text:
+              if msg.from_ in admin:
+	    	       wait2['setTime'][msg.to] = datetime.today().strftime('TANGGAL : %Y-%m-%d \nHARI : %A \nJAM : %H:%M:%S')
+	               cl.sendText(msg.to, "         Waktu/Tanggal\n\n" + (wait2['setTime'][msg.to]))
+	               cl.sendText(msg.to, "Maafin Satria Jika salah Ya kak\n(｀・ω・´)\n \n"  +  datetime.now().strftime('%H:%M:%S'))
+	
+            elif msg.text in ["Friendlist"]:
+              if msg.from_ in admin:
+                contactlist = cl.getAllContactIds()
+                kontak = cl.getContacts(contactlist)
+                num=1
+                msgs="══════List Friend═══════"
+                for ids in kontak:
+                    msgs+="\n[%i] %s" % (num, ids.displayName)
+                    num=(num+1)
+                msgs+="\n══════List Friend═══════\n\nTotal Friend : %i" % len(kontak)
+                cl.sendText(msg.to, msgs)
+
+            elif msg.text in ["Memlist"]:
+              if msg.from_ in admin:   
+                kontak = cl.getGroup(msg.to)
+                group = kontak.members
+                num=1
+                msgs="══════List Member═�����═════-"
+                for ids in group:
+                    msgs+="\n[%i] %s" % (num, ids.displayName)
+                    num=(num+1)
+                msgs+="\n══════List Member═══════\n\nTotal Members : %i" % len(group)
+                cl.sendText(msg.to, msgs) 
   #----------------------------------
         
 #-------------------------------------------------
